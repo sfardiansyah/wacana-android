@@ -19,11 +19,10 @@ class BookAdapter(private val clickListener: BookListener): ListAdapter<Book, Bo
         holder.bind(item, clickListener)
     }
 
-    class BookHolder private constructor(private val binding: FragmentBookCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    class BookHolder private constructor(private val binding: FragmentBookCardBinding) : RecyclerView.ViewHolder(binding.container) {
         fun bind(item: Book, clickListener: BookListener){
             binding.book = item
             binding.clickListener = clickListener
-//            binding.executePendingBindings()
         }
 
         companion object {

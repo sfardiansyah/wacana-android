@@ -48,7 +48,7 @@ class BookListFragment: Fragment() {
         binding.bookList.layoutManager = LinearLayoutManager(
             this.requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        return binding.root
+        return binding.container
     }
 
     private fun setupNavigation() {

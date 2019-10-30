@@ -11,4 +11,8 @@ class BookDetailViewModel: ViewModel() {
     }
 
     val book: LiveData<Book> = _book
+
+    fun getDetail(title: String) {
+        _book.value = Book("New Book", "Penulis", 123456789)
+    }
 }
