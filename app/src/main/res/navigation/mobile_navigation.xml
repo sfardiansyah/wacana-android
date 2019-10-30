@@ -12,8 +12,7 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_bookDetailFragment"
-            app:destination="@id/bookDetailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim" />
+            app:destination="@id/bookDetailFragment" />
     </fragment>
 
     <fragment
@@ -30,5 +29,9 @@
     <fragment
         android:id="@+id/bookDetailFragment"
         android:name="id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookDetail.BookDetailFragment"
-        android:label="BookDetailFragment" />
+        android:label="BookDetailFragment" >
+        <argument
+            android:name="bookTitle"
+            app:argType="string" />
+    </fragment>
 </navigation>

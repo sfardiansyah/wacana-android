@@ -15,9 +15,11 @@ class BookListViewModel: ViewModel() {
             Book("Hohoho", "Hoho", 130000)
         )
     }
+
     private val _navigateToBookDetail = MutableLiveData<Book>()
 
     val books: LiveData<List<Book>> = _books
+
     val navigateToBookDetail: LiveData<Book> = _navigateToBookDetail
 
     fun onBookClicked(book: Book) {
