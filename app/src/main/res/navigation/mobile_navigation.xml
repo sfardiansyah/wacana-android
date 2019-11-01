@@ -31,7 +31,7 @@
         android:name="id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookDetail.BookDetailFragment"
         android:label="BookDetailFragment" >
         <argument
-            android:name="bookTitle"
-            app:argType="string" />
+            android:name="bookId"
+            app:argType="integer" />
     </fragment>
 </navigation>

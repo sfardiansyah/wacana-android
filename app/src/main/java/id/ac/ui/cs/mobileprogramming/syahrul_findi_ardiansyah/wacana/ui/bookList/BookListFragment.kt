@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.R
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.databinding.FragmentBookListBinding
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.home.HomeFragmentDirections
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.InjectorUtils
 
 class BookListFragment: Fragment() {
 
@@ -21,7 +23,9 @@ class BookListFragment: Fragment() {
         const val TAG = "BookListFragment"
     }
 
-    private lateinit var bookListViewModel: BookListViewModel
+    private val bookListViewModel: BookListViewModel by viewModels {
+        InjectorUtils.provideBookListViewModelFactory(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -36,8 +40,6 @@ class BookListFragment: Fragment() {
         })
 
         binding.bookList.adapter = adapter
-
-        bookListViewModel = ViewModelProviders.of(this)[BookListViewModel::class.java]
 
         setupNavigation()
 
@@ -54,7 +56,7 @@ class BookListFragment: Fragment() {
     private fun setupNavigation() {
         bookListViewModel.navigateToBookDetail.observe(this, Observer { book ->
             book?.let {
-                this.findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToBookDetailFragment(book.title))
+                this.findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToBookDetailFragment(book.id))
                 bookListViewModel.doneNavigating()
             }
         })

@@ -1,18 +1,9 @@
 package id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookDetail
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Book
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.repository.BookRepository
 
-class BookDetailViewModel: ViewModel() {
-    private val _book = MutableLiveData<Book>().apply {
-        value = Book("Hahaha", "Haha", 100000)
-    }
+class BookDetailViewModel(bookRepository: BookRepository, private val bookId: Int): ViewModel() {
 
-    val book: LiveData<Book> = _book
-
-    fun getDetail(title: String) {
-        _book.value = Book("New Book", "Penulis", 123456789)
-    }
+    val book = bookRepository.getBook(bookId)
 }

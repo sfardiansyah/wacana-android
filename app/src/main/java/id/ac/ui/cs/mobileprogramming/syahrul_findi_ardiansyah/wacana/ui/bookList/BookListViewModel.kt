@@ -1,24 +1,18 @@
 package id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookList
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Book
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.repository.BookRepository
 
-class BookListViewModel: ViewModel() {
-
-    private val _books = MutableLiveData<List<Book>>().apply {
-        value = listOf(
-            Book("Hahaha", "Haha", 100000),
-            Book("Hehehe", "Hehe", 110000),
-            Book("Huhuhu", "Huhu", 120000),
-            Book("Hohoho", "Hoho", 130000)
-        )
-    }
+class BookListViewModel(bookRepository: BookRepository): ViewModel() {
 
     private val _navigateToBookDetail = MutableLiveData<Book>()
 
-    val books: LiveData<List<Book>> = _books
+    val books: LiveData<List<Book>> = bookRepository.getAllBooks()
 
     val navigateToBookDetail: LiveData<Book> = _navigateToBookDetail
 
