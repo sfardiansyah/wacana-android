@@ -51,11 +51,11 @@ class BookDetailFragment: Fragment() {
 
         binding.lifecycleOwner = this
 
-        return binding.root
+        return binding.container
     }
 
     private fun setupNavigation() {
-        bookDetailViewModel.navigateToBookDetail.observe(this, Observer { book ->
+        bookDetailViewModel.navigateToShoppingCart.observe(this, Observer { book ->
             book?.let {
                 this.findNavController().navigate(BookDetailFragmentDirections.actionBookDetailFragmentToNavigationNotifications(book.id))
                 bookDetailViewModel.doneNavigating()

@@ -7,11 +7,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Book
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Cart
 
-@Database(entities = [Book::class], version = 1, exportSchema = false)
+@Database(entities = [Book::class, Cart::class], version = 1, exportSchema = false)
 abstract class WacanaDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
+    abstract fun cartDao(): CartDao
 
     companion object {
         @Volatile
@@ -25,7 +27,7 @@ abstract class WacanaDatabase : RoomDatabase() {
 
         private fun buildDatabase(context: Context): WacanaDatabase {
             return Room.databaseBuilder(context, WacanaDatabase::class.java, "wacana-db")
-                .addCallback(roomCallback).build()
+                .allowMainThreadQueries().addCallback(roomCallback).build()
         }
 
         private val roomCallback = object : RoomDatabase.Callback() {
