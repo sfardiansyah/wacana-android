@@ -1,14 +1,20 @@
 package id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.notifications
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.R
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.databinding.FragmentNotificationsBinding
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Cart
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.InjectorUtils
 
 class NotificationsFragment : Fragment() {
@@ -22,17 +28,40 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        val textTotalPrice: TextView = root.findViewById(R.id.text_total_price)
+        val binding: FragmentNotificationsBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_notifications, container, false
+        )
+
         notificationsViewModel.text.observe(this, Observer {
-            textView.text = it
+            binding.textNotifications.text = it
         })
+
+        setupNavigation()
 
         notificationsViewModel.cartItems.observe(this, Observer {
-            textTotalPrice.text = notificationsViewModel.calculateTotalPrice(it).toString()
+            it?.let{
+                binding.textTotalPrice.text = notificationsViewModel.calculateTotalPrice(it).toString()
+                binding.clickListener = CheckoutListener {
+                    notificationsViewModel.checkout(it)
+                }
+            }
         })
 
-        return root
+        return binding.root
     }
+
+    private fun setupNavigation() {
+        notificationsViewModel.navigateToHomePage.observe(this, Observer { cartItems ->
+            cartItems?.let {
+                Log.d("setupNavigation", "mashoook")
+                Toast.makeText(requireContext(), "Transaction created!", Toast.LENGTH_SHORT).show()
+                this.findNavController().popBackStack()
+                notificationsViewModel.doneNavigating()
+            }
+        })
+    }
+}
+
+class CheckoutListener(val clickListener: () -> Unit) {
+    fun onClick() = clickListener()
 }

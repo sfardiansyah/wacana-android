@@ -8,4 +8,31 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="BaseText" parent="TextAppearance.AppCompat">
+        <item name="android:fontFamily">@font/circular_std</item>
+    </style>
+
+    <style name="TextSecondary" parent="BaseText">
+        <item name="android:textColor">@color/colorDisabled</item>
+    </style>
+
+    <style name="TextPrimary" parent="BaseText">
+        <item name="android:textColor">@color/colorPrimary</item>
+
+    </style>
+
+    <style name="SectionTitle" parent="TextPrimary">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="SectionSubtitle" parent="TextPrimary">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="CardPrimaryTitle" parent="SectionSubtitle" />
+
+    <style name="CardSubtitle" parent="TextSecondary">
+        <item name="android:textSize">10sp</item>
+    </style>
+
 </resources>

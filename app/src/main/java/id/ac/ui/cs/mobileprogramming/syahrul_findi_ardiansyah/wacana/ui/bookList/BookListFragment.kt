@@ -40,6 +40,8 @@ class BookListFragment: Fragment() {
         })
 
         binding.bookList.adapter = adapter
+        binding.sectionTitle.text = getString(R.string.title_new_section)
+        binding.sectionSubtitle.text = getString(R.string.subtitle_new_section)
 
         setupNavigation()
 

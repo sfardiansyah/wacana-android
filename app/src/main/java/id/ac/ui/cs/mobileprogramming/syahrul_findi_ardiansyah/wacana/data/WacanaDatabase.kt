@@ -8,12 +8,14 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Book
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Cart
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Transaction
 
-@Database(entities = [Book::class, Cart::class], version = 1, exportSchema = false)
+@Database(entities = [Book::class, Cart::class, Transaction::class], version = 1, exportSchema = false)
 abstract class WacanaDatabase : RoomDatabase() {
 
     abstract fun bookDao(): BookDao
     abstract fun cartDao(): CartDao
+    abstract fun transactionDao(): TransactionDao
 
     companion object {
         @Volatile

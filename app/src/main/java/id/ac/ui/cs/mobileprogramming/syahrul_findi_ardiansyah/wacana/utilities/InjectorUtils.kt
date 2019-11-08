@@ -4,6 +4,7 @@ import android.content.Context
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.data.WacanaDatabase
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.repository.BookRepository
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.repository.CartRepository
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.repository.TransactionRepository
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookDetail.BookDetailViewModelFactory
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookList.BookListViewModelFactory
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.cart.CartViewModelFactory
@@ -16,9 +17,16 @@ object InjectorUtils {
             WacanaDatabase.getInstance(context.applicationContext).bookDao())
     }
 
-    fun getCartRepository(context: Context): CartRepository {
+    private fun getCartRepository(context: Context): CartRepository {
         return CartRepository.getInstance(
-            WacanaDatabase.getInstance(context.applicationContext).cartDao()
+            WacanaDatabase.getInstance(context.applicationContext).cartDao(),
+            WacanaDatabase.getInstance(context.applicationContext).transactionDao()
+        )
+    }
+
+    private fun getTransactionRepository(context: Context): TransactionRepository {
+        return TransactionRepository.getInstance(
+            WacanaDatabase.getInstance(context.applicationContext).transactionDao()
         )
     }
 
@@ -42,6 +50,6 @@ object InjectorUtils {
     fun provideNotificationsViewModelFactory(
         context: Context
     ): NotificationsViewModelFactory {
-        return NotificationsViewModelFactory((getCartRepository(context)))
+        return NotificationsViewModelFactory(getCartRepository(context), getTransactionRepository(context))
     }
 }
