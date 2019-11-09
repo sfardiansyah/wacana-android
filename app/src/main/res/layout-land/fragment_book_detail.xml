@@ -74,7 +74,7 @@
                     style="@style/SectionTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{Double.toString(book.price)}"
+                    android:text="@{book.priceText()}"
                     tools:text="Rp100.000" />
 
             </LinearLayout>
