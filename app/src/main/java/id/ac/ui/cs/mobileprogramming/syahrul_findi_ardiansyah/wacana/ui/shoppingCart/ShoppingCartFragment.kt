@@ -14,7 +14,10 @@ import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.R
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.databinding.FragmentShoppingCartBinding
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.InjectorUtils
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.IndonesiaCurrency
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.ReminderManager
 import java.math.BigDecimal
+
+
 
 class ShoppingCartFragment : Fragment() {
 
@@ -38,6 +41,7 @@ class ShoppingCartFragment : Fragment() {
                 binding.textTotalPrice.text = IndonesiaCurrency.valueOf(BigDecimal(shoppingCartViewModel.calculateTotalPrice(it)))
                 binding.clickListener = CheckoutListener {
                     shoppingCartViewModel.checkout(it)
+                    ReminderManager.cancelReminder(requireContext().applicationContext)
                 }
             }
         })

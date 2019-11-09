@@ -1,5 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.cart
 
+import android.app.AlarmManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.databinding.FragmentCartListBinding
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.R
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.InjectorUtils
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.ReminderManager
 
 class CartFragment: Fragment() {
 
@@ -39,6 +41,12 @@ class CartFragment: Fragment() {
 
         cartViewModel.cartItems.observe(this, Observer {
             adapter.submitList(it)
+
+            if (it.isEmpty()) {
+                ReminderManager.cancelReminder(requireContext().applicationContext)
+            } else {
+                ReminderManager.sendReminderWithAlarm(requireContext().applicationContext)
+            }
         })
 
         binding.cartList.layoutManager = LinearLayoutManager(
