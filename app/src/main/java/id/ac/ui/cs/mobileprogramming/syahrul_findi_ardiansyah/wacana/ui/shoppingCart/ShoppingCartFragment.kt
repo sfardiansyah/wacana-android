@@ -1,11 +1,9 @@
-package id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.notifications
+package id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.shoppingCart
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,13 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.R
-import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.databinding.FragmentNotificationsBinding
-import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Cart
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.databinding.FragmentShoppingCartBinding
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.InjectorUtils
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.IndonesiaCurrency
+import java.math.BigDecimal
 
-class NotificationsFragment : Fragment() {
+class ShoppingCartFragment : Fragment() {
 
-    private val notificationsViewModel: NotificationsViewModel by viewModels {
+    private val shoppingCartViewModel: ShoppingCartViewModel by viewModels {
         InjectorUtils.provideNotificationsViewModelFactory(requireContext())
     }
 
@@ -28,35 +27,32 @@ class NotificationsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding: FragmentNotificationsBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_notifications, container, false
+        val binding: FragmentShoppingCartBinding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_shopping_cart, container, false
         )
-
-        notificationsViewModel.text.observe(this, Observer {
-            binding.textNotifications.text = it
-        })
 
         setupNavigation()
 
-        notificationsViewModel.cartItems.observe(this, Observer {
+        shoppingCartViewModel.cartItems.observe(this, Observer {
             it?.let{
-                binding.textTotalPrice.text = notificationsViewModel.calculateTotalPrice(it).toString()
+                binding.textTotalPrice.text = IndonesiaCurrency.valueOf(BigDecimal(shoppingCartViewModel.calculateTotalPrice(it)))
                 binding.clickListener = CheckoutListener {
-                    notificationsViewModel.checkout(it)
+                    shoppingCartViewModel.checkout(it)
                 }
             }
         })
+
+        binding.priceTitle.text = getString(R.string.title_price)
 
         return binding.root
     }
 
     private fun setupNavigation() {
-        notificationsViewModel.navigateToHomePage.observe(this, Observer { cartItems ->
+        shoppingCartViewModel.navigateToHomePage.observe(this, Observer { cartItems ->
             cartItems?.let {
-                Log.d("setupNavigation", "mashoook")
                 Toast.makeText(requireContext(), "Transaction created!", Toast.LENGTH_SHORT).show()
                 this.findNavController().popBackStack()
-                notificationsViewModel.doneNavigating()
+                shoppingCartViewModel.doneNavigating()
             }
         })
     }

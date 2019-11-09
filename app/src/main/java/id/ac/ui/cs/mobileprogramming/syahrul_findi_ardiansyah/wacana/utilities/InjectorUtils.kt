@@ -8,7 +8,7 @@ import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.repository.
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookDetail.BookDetailViewModelFactory
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookList.BookListViewModelFactory
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.cart.CartViewModelFactory
-import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.notifications.NotificationsViewModelFactory
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.shoppingCart.ShoppingCartViewModelFactory
 
 object InjectorUtils {
 
@@ -49,7 +49,7 @@ object InjectorUtils {
 
     fun provideNotificationsViewModelFactory(
         context: Context
-    ): NotificationsViewModelFactory {
-        return NotificationsViewModelFactory(getCartRepository(context), getTransactionRepository(context))
+    ): ShoppingCartViewModelFactory {
+        return ShoppingCartViewModelFactory(getCartRepository(context), getTransactionRepository(context))
     }
 }

@@ -29,11 +29,17 @@ class CartRepository private constructor(
         return cartDao.getCartItems(count + 1)
     }
 
-        fun updateCartCount(cartId: Int, count: Int) = cartDao.updateCartCount(cartId, count)
+    fun updateCartCount(cartId: Int, count: Int) {
+        if (count > 0) {
+            cartDao.updateCartCount(cartId, count)
+        } else {
+            cartDao.deleteCartItem(cartId, transactionDao.getCount() + 1)
+        }
+    }
 
-        fun deleteAllCartItems() = cartDao.deleteAllCartItems()
+    fun deleteAllCartItems() = cartDao.deleteAllCartItems()
 
-        companion object {
+    companion object {
 
         // For Singleton instantiation
         @Volatile private var instance: CartRepository? = null

@@ -16,7 +16,7 @@ import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.utilities.I
 
 class CartFragment: Fragment() {
 
-    private val bookListViewModel: CartViewModel by viewModels {
+    private val cartViewModel: CartViewModel by viewModels {
         InjectorUtils.provideCartViewModelFactory(requireContext())
     }
 
@@ -30,19 +30,21 @@ class CartFragment: Fragment() {
         )
 
         val adapter = CartAdapter(CartListener({ cartItem ->
-            Log.d("Increment", cartItem.book.title)
+            cartViewModel.incrementCount(cartItem)
         }, { cartItem ->
-            Log.d("Decrement", cartItem.book.title)
+            cartViewModel.decrementCount(cartItem)
         }))
 
         binding.cartList.adapter = adapter
 
-        bookListViewModel.cartItems.observe(this, Observer {
+        cartViewModel.cartItems.observe(this, Observer {
             adapter.submitList(it)
         })
 
         binding.cartList.layoutManager = LinearLayoutManager(
             this.requireContext(), LinearLayoutManager.VERTICAL, false)
+
+        binding.lifecycleOwner = this
 
         return binding.root
     }

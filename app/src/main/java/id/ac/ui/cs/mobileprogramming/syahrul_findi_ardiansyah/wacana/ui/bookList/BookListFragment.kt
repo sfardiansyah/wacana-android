@@ -1,7 +1,6 @@
 package id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookList
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.R
@@ -35,7 +33,7 @@ class BookListFragment: Fragment() {
         val binding: FragmentBookListBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_book_list, container, false)
 
-        val adapter = BookAdapter(BookListener { book ->
+        val adapter = BookListAdapter(BookListener { book ->
             bookListViewModel.onBookClicked(book)
         })
 

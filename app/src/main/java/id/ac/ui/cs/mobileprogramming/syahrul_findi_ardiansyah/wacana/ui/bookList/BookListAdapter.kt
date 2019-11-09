@@ -1,51 +1,52 @@
 package id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.bookList
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.R
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.databinding.FragmentBookCardBinding
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Book
-import java.text.NumberFormat
-import java.util.*
 
-class BookListAdapter(private val books: List<Book>, private val onBookListener: OnBookListener): RecyclerView.Adapter<BookListAdapter.BookHolder>() {
+class BookListAdapter(private val clickListener: BookListener): ListAdapter<Book, BookListAdapter.BookHolder>(BookDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookHolder {
-        val v: View = LayoutInflater.from(parent.context).inflate(R.layout.fragment_book_card, parent, false)
-
-        return BookHolder(v, onBookListener)
+        return BookHolder.from(parent)
     }
-
-    override fun getItemCount() = books.size
 
     override fun onBindViewHolder(holder: BookHolder, position: Int) {
-        val book = books[position]
-        var formatRp = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-        formatRp.maximumFractionDigits = 0
-
-        holder.bookTitle.text = book.title
-        holder.bookAuthor.text = book.author
-        holder.bookPrice.text = formatRp.format(book.price)
+        val item = getItem(position)
+        holder.bind(item, clickListener)
     }
 
-    class BookHolder(view: View, onBookListener: OnBookListener): RecyclerView.ViewHolder(view), View.OnClickListener {
-        var bookTitle: TextView = view.findViewById(R.id.book_title)
-        var bookAuthor: TextView = view.findViewById(R.id.book_author)
-        var bookPrice: TextView = view.findViewById(R.id.book_price)
-        var listener: OnBookListener = onBookListener
-
-        init {
-            view.setOnClickListener(this)
+    class BookHolder private constructor(private val binding: FragmentBookCardBinding) : RecyclerView.ViewHolder(binding.container) {
+        fun bind(item: Book, clickListener: BookListener){
+            binding.book = item
+            binding.clickListener = clickListener
         }
 
-        override fun onClick(p0: View?) {
-            listener.onBookClick(adapterPosition)
+        companion object {
+            fun from(parent: ViewGroup): BookHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = FragmentBookCardBinding.inflate(layoutInflater, parent, false)
+                return BookHolder(binding)
+            }
         }
     }
 
-    interface OnBookListener {
-        fun onBookClick(position: Int)
+}
+
+class BookDiffCallback: DiffUtil.ItemCallback<Book>(){
+    override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
+        return oldItem.title == newItem.title
     }
+
+    override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
+        return oldItem == newItem
+    }
+}
+
+
+class BookListener(val clickListener: (book: Book) -> Unit) {
+    fun onClick(book: Book) = clickListener(book)
 }

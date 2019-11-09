@@ -23,9 +23,9 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.notifications.NotificationsFragment"
+        android:name="id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.shoppingCart.ShoppingCartFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" >
+        tools:layout="@layout/fragment_shopping_cart" >
         <argument
             android:name="bookId"
             app:argType="integer" />

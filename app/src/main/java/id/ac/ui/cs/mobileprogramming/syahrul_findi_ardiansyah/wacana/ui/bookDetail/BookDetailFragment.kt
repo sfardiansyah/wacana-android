@@ -35,9 +35,6 @@ class BookDetailFragment: Fragment() {
             inflater, R.layout.fragment_book_detail, container, false
         )
 
-//        var formatRp = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
-//        formatRp.maximumFractionDigits = 0
-
         bookDetailViewModel.book.observe(this, Observer {
             it?.let {
                 binding.book = it

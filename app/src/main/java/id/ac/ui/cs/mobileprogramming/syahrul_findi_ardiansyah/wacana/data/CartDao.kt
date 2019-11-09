@@ -21,4 +21,7 @@ interface CartDao {
 
     @Query("DELETE FROM carts")
     fun deleteAllCartItems()
+
+    @Query("DELETE FROM carts WHERE id = :id AND transactionId = :transactionId")
+    fun deleteCartItem(id: Int, transactionId: Int)
 }
