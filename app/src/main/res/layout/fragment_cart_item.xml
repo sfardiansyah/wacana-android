@@ -26,17 +26,18 @@
 
             <ImageView
                 android:id="@+id/book_cover"
-                android:layout_width="wrap_content"
+                android:layout_width="75dp"
                 android:layout_height="100dp"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_weight="1"
                 android:background="@color/colorDisabled"
-                app:srcCompat="@drawable/img_book" />
+                android:contentDescription="@string/book_cover_desc"
+                app:srcCompat="@drawable/intelligent_investor" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="6">
+                android:layout_weight="9">
 
                 <TextView
                     android:id="@+id/book_title"
@@ -90,9 +91,9 @@
                             android:background="@drawable/button_group_left"
                             android:minWidth="6dp"
                             android:minHeight="26dp"
+                            android:onClick="@{() -> clickListener.onClickDecrement(cart)}"
                             android:text="-"
                             android:textColor="@color/colorPrimary"
-                            android:onClick="@{() -> clickListener.onClickDecrement(cart)}"
                             android:textSize="12sp" />
 
                         <TextView
@@ -115,9 +116,9 @@
                             android:fontFamily="@font/circular_std_medium"
                             android:minWidth="6dp"
                             android:minHeight="26dp"
+                            android:onClick="@{() -> clickListener.onClickIncrement(cart)}"
                             android:text="+"
                             android:textColor="@color/colorPrimary"
-                            android:onClick="@{() -> clickListener.onClickIncrement(cart)}"
                             android:textSize="12sp" />
                     </LinearLayout>
 

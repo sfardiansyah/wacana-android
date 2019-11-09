@@ -75,7 +75,7 @@
                 android:layout_weight="1"
                 android:minHeight="40dp"
                 android:onClick="@{() -> clickListener.onClick()}"
-                android:text="Checkout" />
+                android:text="@string/cta_checkout" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

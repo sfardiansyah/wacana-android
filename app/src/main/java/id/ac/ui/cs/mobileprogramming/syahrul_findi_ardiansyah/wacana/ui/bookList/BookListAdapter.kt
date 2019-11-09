@@ -22,6 +22,7 @@ class BookListAdapter(private val clickListener: BookListener): ListAdapter<Book
     class BookHolder private constructor(private val binding: FragmentBookCardBinding) : RecyclerView.ViewHolder(binding.container) {
         fun bind(item: Book, clickListener: BookListener){
             binding.book = item
+            binding.bookCover.setImageResource(item.imgSrc)
             binding.clickListener = clickListener
         }
 

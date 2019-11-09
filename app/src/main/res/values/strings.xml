@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Wacana</string>
+    <string name="app_name" translatable="false">Wacana</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -9,4 +9,5 @@
     <string name="title_new_section">Newest Collection</string>
     <string name="cta_add_to_cart">Add to Cart</string>
     <string name="subtitle_new_section">New and secondary books in Wacana.</string>
+    <string name="cta_checkout">Checkout</string>
 </resources>

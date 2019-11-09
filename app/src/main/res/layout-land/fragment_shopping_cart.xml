@@ -11,13 +11,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="?attr/actionBarSize">
+        android:paddingBottom="56dp"
+        android:baselineAligned="false">
 
         <fragment
             android:id="@+id/fragment3"
             android:name="id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.ui.cart.CartFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="2" />
@@ -72,7 +73,7 @@
                     android:layout_weight="1"
                     android:minHeight="40dp"
                     android:onClick="@{() -> clickListener.onClick()}"
-                    android:text="Checkout" />
+                    android:text="@string/cta_checkout" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

@@ -15,10 +15,10 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:baselineAligned="false"
         android:elevation="5dp"
         android:orientation="horizontal"
-        android:paddingBottom="?attr/actionBarSize"
-        android:baselineAligned="false">
+        android:paddingBottom="56dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

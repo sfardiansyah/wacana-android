@@ -6,6 +6,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.R
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Book
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Cart
 import id.ac.ui.cs.mobileprogramming.syahrul_findi_ardiansyah.wacana.model.Transaction
@@ -45,8 +46,9 @@ class PopulateDbAsyncTask(db: WacanaDatabase?) : AsyncTask<Unit, Unit, Unit>() {
     private val bookDao = db?.bookDao()
 
     override fun doInBackground(vararg p0: Unit?) {
-        bookDao?.insert(Book("Title 1", "description 1", 100000))
-        bookDao?.insert(Book("Title 2", "description 2", 110000))
-        bookDao?.insert(Book("Title 3", "description 3", 120000))
+        bookDao?.insert(Book("Sugar Run", "Mesha Maren", 100000, R.drawable.sugar_run))
+        bookDao?.insert(Book("Making Things Happen", "Elizabeth Murphy", 110000, R.drawable.making_things_happen))
+        bookDao?.insert(Book("Love Does", "Bob Goff", 120000, R.drawable.love_does))
+        bookDao?.insert(Book("The Intelligent Investor", "Benjamin Graham", 130000, R.drawable.intelligent_investor))
     }
 }

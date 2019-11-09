@@ -22,6 +22,7 @@ class CartAdapter(private val clickListener: CartListener): ListAdapter<Cart, Ca
     class CartHolder private constructor(private val binding: FragmentCartItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Cart, clickListener: CartListener){
             binding.cart = item
+            binding.bookCover.setImageResource(item.book.imgSrc)
             binding.clickListener = clickListener
         }
 

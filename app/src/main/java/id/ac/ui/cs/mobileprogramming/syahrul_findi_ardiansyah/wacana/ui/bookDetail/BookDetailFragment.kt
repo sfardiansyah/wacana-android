@@ -35,6 +35,7 @@ class BookDetailFragment: Fragment() {
         bookDetailViewModel.book.observe(this, Observer {
             it?.let {
                 binding.book = it
+                binding.bookCover.setImageResource(it.imgSrc)
                 binding.clickListener = AddToCartListener {
                     bookDetailViewModel.onCTAClicked(it)
                 }

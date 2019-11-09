@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Wacana</string>
+    <string name="book_cover_desc">Sampul Buku</string>
+    <string name="cta_add_to_cart">Tambahkan ke Keranjang</string>
+    <string name="subtitle_new_section">Buku baru dan bekas yang ada di Wacana.</string>
+    <string name="title_dashboard">Dasbor</string>
+    <string name="title_home">Beranda</string>
+    <string name="title_new_section">Koleksi Terbaru</string>
+    <string name="title_notifications">Notifikasi</string>
+    <string name="title_shopping_cart">Keranjang</string>
+    <string name="title_price">Total Harga</string>
+    <string name="cta_checkout">Beli Sekarang</string>
+</resources>

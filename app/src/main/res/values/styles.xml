@@ -33,6 +33,7 @@
 
     <style name="CardSubtitle" parent="TextSecondary">
         <item name="android:textSize">10sp</item>
+        <item name="android:layout_marginBottom">4dp</item>
     </style>
 
     <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar"/>

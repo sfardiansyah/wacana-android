@@ -26,7 +26,7 @@ class ReminderManager {
 
             alarmManager.setExact(
                 AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + 1 * 60000,
+                SystemClock.elapsedRealtime() + 15 * 60000,
                 pendingIntent
             )
         }

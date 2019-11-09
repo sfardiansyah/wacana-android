@@ -52,7 +52,7 @@ class ReminderService : IntentService("ReminderService") {
             channel.description = desc
 
             val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager.createNotificationChannel(channel)
+            notificationManager?.createNotificationChannel(channel)
         }
     }
 }
