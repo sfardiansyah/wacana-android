@@ -7,5 +7,6 @@
     <string name="title_price">Total Price</string>
     <string name="book_cover_desc">Book Cover</string>
     <string name="title_new_section">Newest Collection</string>
+    <string name="cta_add_to_cart">Add to Cart</string>
     <string name="subtitle_new_section">New and secondary books in Wacana.</string>
 </resources>
