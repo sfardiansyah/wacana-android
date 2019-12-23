@@ -15,10 +15,6 @@ class ShoppingCartViewModel(cartRepository: CartRepository, private val transact
 
     val cartItems: LiveData<List<Cart>> = cartRepository.getCartItems()
 
-    fun calculateTotalPrice(cartItems: List<Cart>) = cartItems.sumBy {
-        (it.book.price * it.count).toInt()
-    }
-
     fun checkout(cartItems: List<Cart>) {
         transactionRepository.insert(cartItems)
         _navigateToHomePage.value = cartItems
@@ -26,5 +22,15 @@ class ShoppingCartViewModel(cartRepository: CartRepository, private val transact
 
     fun doneNavigating() {
         _navigateToHomePage.value = null
+    }
+
+    external fun calculateTotalPrice(cartItems: LongArray): Long
+
+    companion object {
+
+        // Used to load the 'native-lib' library on application startup.
+        init {
+            System.loadLibrary("native-lib")
+        }
     }
 }

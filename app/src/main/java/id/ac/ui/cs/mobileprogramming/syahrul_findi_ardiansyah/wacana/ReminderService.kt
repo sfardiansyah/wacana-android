@@ -34,7 +34,7 @@ class ReminderService : IntentService("ReminderService") {
         )
 
         val reminderNotificationBuilder =
-            NotificationCompat.Builder(this).setContentTitle("Reminder!")
+            NotificationCompat.Builder(this, CHANNEL_ID).setContentTitle("Reminder!")
                 .setSmallIcon(R.drawable.ic_logo_wacana)
                 .setStyle(NotificationCompat.BigTextStyle().bigText(msg))
                 .setContentText(msg).setChannelId(CHANNEL_ID)
